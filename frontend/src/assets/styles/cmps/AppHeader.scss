@@ -1,0 +1,107 @@
+.app-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background: #fff;
+    border-right: 1px solid #dbdbdb;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+
+    .nav-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: stretch;
+        padding: 2rem 1rem 1rem 1.5rem;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 70px;
+        margin-top: 24px;
+        margin-bottom: 24px;
+        padding-left: 8px;
+
+        img {
+            height: 150px; 
+            width: auto;
+            display: block;
+        }
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 1.1em;
+            color: #222;
+            font-weight: 500;
+            padding: 0.7rem 1rem 0.7rem 0;
+            border-radius: 8px;
+            transition: background 0.15s, color 0.15s;
+
+            &.active{
+                font-weight: 700;
+                box-shadow: none;
+                svg{
+                    font-weight: 700;
+                    stroke-width: 2.3;
+                }
+                span{
+                    font-weight: 700;
+                }
+            }
+
+            &:hover {
+                color: #000;
+                background-color: lightgray;
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+            .avatar {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #fafafa;
+            }
+        }
+    }
+
+    .logout-btn {
+        margin-top: auto;
+        margin-left: 4px;
+        background: none;
+        border: none;
+        color: #d30067;
+        font-weight: 600;
+        font-size: 1em;
+        cursor: pointer;
+        transition: color 0.2s;
+        &:hover {
+            color: #a1004c;
+        }
+    }
+}
+
+.app-header.collapsed {
+  width: 180px; 
+  justify-content: center;
+  padding: 0.7rem 0;
+  span {
+    display: none;
+  }
+}
+
+
+
+

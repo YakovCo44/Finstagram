@@ -1,0 +1,132 @@
+// This SCSS should be in your SearchModal.scss
+.search-modal__backdrop {
+    position: fixed;
+    left: 250px;
+    top: 0;
+    width: calc(100vw - 250px); /* covers feed but not sidebar */
+    height: 100vh;
+    background: rgba(0,0,0,0.09); 
+    z-index: 150;
+    transition: opacity 0.25s;
+    opacity: 1;
+}
+
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 80px;
+    width: 400px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14), 0 1.5px 4px rgba(0,0,0,0.09);
+    z-index: 200;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px 18px 16px;
+    border-right: 1px solid #eaeaea;
+    transition: transform 0.3s cubic-bezier(.2,1,.22,1);
+    transform: translateX(-120%);
+    &.open {
+        transform: translateX(0);
+    }
+    display: flex;
+    flex-direction: column;
+    padding: 24px 18px 18px 18px;
+    border-right: 1px solid #eaeaea;
+}
+
+// Optional: Style the input/search bar for more "Instagram" feel
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 0 0 16px 0;
+    input {
+        width: 100%;
+        padding: 10px 38px 10px 16px;
+        border-radius: 8px;
+        border: 1px solid #dbdbdb;
+        background: #fafafa;
+        font-size: 16px;
+        outline: none;
+        font-family: inherit;
+        font-weight: 400;
+        color: #262626;
+    }
+    .spinner {
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ccc;
+        border-top: 2px solid #888;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+    }
+}
+@keyframes spin {
+    100% { transform: rotate(360deg);}
+}
+
+// Style "Recent searches" area
+.recent-searches {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        span {
+            font-weight: 600;
+            font-size: 1.0rem;
+            color: #737373;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        button {
+            background: none;
+            border: none;
+            color: #0095f6;
+            font-weight: 500;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 0;
+        }
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 1em;
+            color: #262626;
+            svg {
+                cursor: pointer;
+                margin-left: 6px;
+                color: #737373;
+            }
+        }
+    }
+}
+
+.search-modal__headline {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #262626;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+  padding-left: 2px;
+}
+
+.search-modal__divider {
+  height: 1px;
+  background: #dbdbdb;
+  margin: 18px 0 10px 0;
+  width: 100%;
+}
+
+
+

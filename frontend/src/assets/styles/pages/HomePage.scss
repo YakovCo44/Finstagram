@@ -1,0 +1,98 @@
+.home-page {
+    background: white;
+    min-height: 100vh;
+    padding-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Sidebar (profile, suggestions, etc.)
+.sidebar {
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+// Feed/main posts
+.feed {
+    width: 100%;
+    max-width: 470px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.post-card {
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    overflow: hidden;
+    border: none;
+
+    .post-header {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .post-header .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid #dbdbdb;
+    }
+
+    .post-header .username {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: #262626;
+    }
+
+    .post-header span {
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    .post-image {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        display: block;
+        }
+
+    .post-actions {
+        display: flex;
+        align-items: center;
+        padding: 12px 0 0 12px;
+        gap: 16px;
+
+        svg {
+            transition: color 0.2s;
+            &:hover {
+                color: #ce2e6c; // Your primary color, adjust as you wish!
+            }
+        }
+
+        .post-actions svg:hover {
+        color: #262626;
+        opacity: 0.7;
+        transition: color 0.2s;
+        }
+
+        .post-actions .like-count {
+            font-weight: 600;
+            color: #262626;
+        }
+    }
+
+    .post-footer {
+        padding: 0 1rem 1rem 1rem;
+        font-size: 1rem;
+    }
+}

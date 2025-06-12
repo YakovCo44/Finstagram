@@ -1,0 +1,43 @@
+.stories-bar {
+    display: flex;
+    gap: 18px;
+    padding: 24px 0 12px 10px;
+    overflow-x: auto;
+    background:transparent;
+    border-bottom: none;
+
+    .story-avatar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        min-width: 70px;
+
+        img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2.5px solid #d4d4d4;
+            object-fit: cover;
+            transition: border 0.3s;
+        }
+
+        &.has-story img {
+            border: 2.5px solid #cf2e6c; // Pink Instagram-ish border
+        }
+
+        .story-username {
+            margin-top: 5px;
+            font-size: 0.81em;
+            color: #444;
+            white-space: nowrap;
+            max-width: 64px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &:hover img {
+            border-color: #ce2e6c;
+        }
+    }
+}
