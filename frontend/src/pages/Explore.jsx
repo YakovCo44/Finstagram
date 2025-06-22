@@ -1,3 +1,4 @@
+import '../assets/styles/pages/Explore.scss' // <-- Import the SCSS first
 import { demoPosts } from '../data/demoPosts'
 
 export function Explore() {
@@ -13,4 +14,5 @@ export function Explore() {
     </section>
   )
 }
+
 
