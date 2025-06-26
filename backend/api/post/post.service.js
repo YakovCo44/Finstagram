@@ -63,10 +63,23 @@ async function toggleLike(postId, user) {
   return getById(postId)
 }
 
+async function remove(postId) {
+  const collection = await dbService.getCollection('post')
+  let criteria
+  if (/^[a-f\d]{24}$/i.test(postId)) {
+    criteria = { _id: new ObjectId(postId) }
+  } else {
+    criteria = { _id: postId }
+  }
+  const res = await collection.deleteOne(criteria)
+  return res
+}
+
 export const postService = {
   query,
   getById,
   add,
   addComment,
-  toggleLike
+  toggleLike, 
+  remove
 }

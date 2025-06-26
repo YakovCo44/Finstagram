@@ -41,52 +41,57 @@
 
     a,
     .create-btn {
-      display: flex;
-      align-items: center;
-      gap: 12px; 
-      font-size: 1em;
-      color: #262626;
-      font-weight: 400;
-      padding: 0.5rem 1rem 0.5rem 0; 
-      border-radius: 8px;
-      transition: background 0.15s, color 0.15s;
-      background: none;
-      border: none;
-      box-shadow: none;
-      cursor: pointer;
+    all: unset; // This wipes native button styles!
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1em;
+    color: #262626;
+    font-weight: 400;
+    padding: 0.5rem 1rem 0.5rem 0;
+    border-radius: 8px;
+    cursor: pointer;
+    background: none;
+    transition: background 0.15s, color 0.15s;
+    box-shadow: none;
+    user-select: none;
+    outline: none;
 
-      svg {
+    svg {
         display: block;
+        width: 26px;
+        height: 26px;
         min-width: 26px;
         min-height: 26px;
-        max-width: 26px;
-        max-height: 26px;
         margin: 0;
-      }
+    }
 
-      .sidebar-label {
+    .sidebar-label {
         color: #262626;
         font-size: 1em;
         font-weight: 400;
         letter-spacing: 0.01em;
-        transition: color .2s;
-        line-height: 24px; 
-        padding-top: 0;     
-        padding-bottom: 0;
+        line-height: 24px;
+        padding: 0;
         display: inline-block;
-      }
+        vertical-align: middle;
+    }
 
-      &.active,
-      &:focus,
-      &:active {
+    &:hover {
+        color: #000;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    a.active {
         font-weight: 700;
-        svg {
-          font-weight: 700;
-        }
         .sidebar-label {
-          font-weight: 700;
+            font-weight: 700;
         }
-      }
+        svg {
+            font-weight: 700;
+        }
+    }
+
 
       &:hover {
         color: #000;

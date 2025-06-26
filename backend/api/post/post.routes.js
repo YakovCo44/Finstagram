@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPosts, getPostById, addPost, addCommentToPost, toggleLikeOnPost } from './post.controller.js'
+import { getPosts, getPostById, addPost, addCommentToPost, toggleLikeOnPost, deletePost } from './post.controller.js'
 import { upload } from './upload.middleware.js'
 
 const router = express.Router()
@@ -18,6 +18,9 @@ router.post('/:id/comment', addCommentToPost)
 
 //like or unlike a post
 router.post('/:id/like', toggleLikeOnPost)
+
+//Delete a post
+router.delete('/:id', deletePost)
 
 export default router
 

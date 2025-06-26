@@ -10,7 +10,6 @@ import {  useState } from 'react'
 import { UserDetails } from './pages/UserDetails'
 
 import { AppHeader } from './cmps/AppHeader'
-import { AppFooter } from './cmps/AppFooter'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { Login } from './pages/Login.jsx'
@@ -60,7 +59,6 @@ export function RootCmp() {
                     <Route path="/p/:postId" element={<PostModal />} />
                 </Routes>
             </main>
-            <AppFooter />
         </div>
     )
 }

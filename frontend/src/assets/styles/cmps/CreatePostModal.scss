@@ -1,25 +1,378 @@
 .modal-backdrop {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; display: flex; align-items: center; justify-content: center;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
 }
 .create-post-modal {
-  background: #fff; border-radius: 12px; padding: 2em; min-width: 350px; max-width: 95vw; position: relative; box-shadow: 0 2px 24px rgba(0,0,0,0.18);
-  display: flex; flex-direction: column; align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0;
+  min-width: 460px;
+  width: 800px;
+  height: 900px;
+  max-width: 900px;
+  position: relative;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
 }
+
+.create-post-modal .modal-separator {
+  border-bottom: 1px solid #dbdbdb;
+  width: 100%;
+  margin: 16px 0 0 0;
+}
+
 .close-btn {
-  position: absolute; top: 1em; right: 1em; background: none; border: none; font-size: 2em; color: #888; cursor: pointer;
+  position: absolute;
+  top: 16px; right: 24px;
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #888;
+  cursor: pointer;
+  z-index: 2;
 }
+
+.modal-title {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+    color: #262626;
+  }
+
+.modal-header {
+  width: 100%;
+  padding: 0;
+  height: 48px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #262626;
+  text-align: center;
+  text-transform: lowercase;
+  font-family: inherit;
+}
+
+.close-btn {
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #262626;
+    cursor: pointer;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+.modal-divider {
+  width: 100%;
+  height: 1px;
+  background: #dbdbdb;
+  margin-bottom: 18px;
+}
+
 .drop-area {
-  border: 2px dashed #bdbdbd; padding: 2em; text-align: center; cursor: pointer; border-radius: 12px; min-width: 300px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  width: 100%;
+  cursor: pointer;
+  padding: 32px 0 40px 0;
+  text-align: center;
+  background: #fafafa;
 }
+
+.share-btn {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-weight: 600;
+    color: #0095f6;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    &:disabled {
+      color: #b2dffc;
+      cursor: not-allowed;
+    }
+  }
+
+.insta-image-icon {
+  margin-bottom: 28px;
+  svg {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.drag-text {
+  color: #262626;
+  font-size: 1.14em;
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.blue-btn {
+  margin-top: 0;
+  background: #0095f6;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover, &:focus {
+    background: #1877f2;
+  }
+}
+
 .image-preview {
-  width: 100%; max-width: 350px; border-radius: 10px; margin-bottom: 1em;
+  width: 100%;
+  max-width: 320px;
+  border-radius: 16px;
+  margin-bottom: 1.4em;
 }
+
 .caption-form {
-  display: flex; flex-direction: column; gap: 1em; width: 100%; align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  align-items: center;
+  padding: 1.6em 0 2em 0;
 }
+
+.create-post-modal h2 {
+  font-size: 1.18rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: lowercase;
+  letter-spacing: .05em;
+  margin: 36px 0 0 0;
+}
+
 textarea {
-  width: 100%; min-height: 80px; border-radius: 8px; border: 1px solid #ddd; padding: 0.5em;
+  width: 90%;
+  min-height: 80px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.5em;
+  resize: none;
+  font-size: 1em;
+  font-family: inherit;
 }
+
+.create-img-icon {
+  width: 200px;   
+  height: auto;
+  margin: 40px auto 18px auto;
+  display: block;
+}
+
 button[type="submit"] {
-  background: #3897f0; color: #fff; padding: 0.5em 2em; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+  @extend .blue-btn;
+  width: 100%;
+  margin-top: 0.7em;
 }
+
+.create-post-modal {
+  width: 750px; // Make modal wide enough for two columns
+  max-width: 90vw;
+  border-radius: 18px;
+  padding: 0;
+  overflow: hidden;
+  .modal-title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 24px 0 12px 0;
+    color: #222;
+    letter-spacing: .01em;
+    text-transform: lowercase;
+  }
+  .modal-divider {
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 0;
+  }
+}
+
+.modal-content-row {
+  display: flex;
+  flex-direction: row;
+  height: 420px;
+  min-height: 350px;
+  .img-col {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    min-width: 0;
+    .image-preview-large {
+      width: 100%;
+      height: auto;
+      max-width: 340px;
+      max-height: 400px;
+      object-fit: contain;
+      border-radius: 0;
+      background: #000;
+      display: block;
+    }
+  }
+  .caption-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    background: #fff;
+    padding: 2rem 1rem 1rem 1rem;
+    .caption-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      justify-content: center;
+      height: 100%;
+    }
+    .caption-input {
+      width: 100%;
+      min-height: 100px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 0.75em;
+      font-size: 1em;
+    }
+    .post-btn {
+      background: #0095f6;
+      color: #fff;
+      padding: 0.6em 0;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      margin-top: 16px;
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.modal-line {
+  height: 1px;
+  width: 100%;
+  background: #dbdbdb;
+  margin-bottom: 0;
+}
+
+// Step 1
+.drop-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  min-height: 400px;
+  .drop-img {
+    width: 110px;
+    margin-bottom: 18px;
+  }
+  .drop-label {
+    font-size: 20px;
+    color: #262626;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .select-btn {
+    background: #0095f6;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+    &:hover { background: #1877f2; }
+  }
+}
+
+// Step 2
+.post-preview-row {
+  display: flex;
+  flex-direction: row;
+  height: 520px;
+  min-height: 0;
+  margin-top: 18px;
+  .preview-img-col {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 0 0 0 18px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      max-height: 490px;
+      max-width: 100%;
+      border-radius: 0 0 0 18px;
+      background: #000;
+    }
+  }
+  .caption-col {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 36px 24px;
+    background: #fff;
+    border-radius: 0 0 18px 0;
+    .status-textarea {
+      border: none;
+      resize: none;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      min-height: 120px;
+      padding: 0;
+      margin-bottom: 32px;
+      background: #fff;
+      color: #262626;
+      box-shadow: none;
+      &:focus { outline: none; }
+    }
+  }
+}
+

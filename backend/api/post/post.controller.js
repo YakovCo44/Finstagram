@@ -51,4 +51,17 @@ export async function toggleLikeOnPost(req, res) {
   res.json(post)
 }
 
+export async function deletePost(req, res) {
+  try {
+    const { id } = req.params
+    const result = await postService.remove(id)
+    if (result.deletedCount === 0) {
+      return res.status(404).send({ message: 'Post not found' })
+    }
+    res.send({ message: 'Post deleted' })
+  } catch (err) {
+    res.status(500).send({ message: 'Error deleting post', error: err.message })
+  }
+}
+
 

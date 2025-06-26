@@ -105,14 +105,17 @@ export function AppHeader({ isCollapsed, onSearchClick }) {
                 </>
               )}
             </NavLink>
-            <button
+            <NavLink
+            to="#"
             className={`create-btn${isCreateOpen ? ' active' : ''}`}
-            type="button"
-            onClick={() => setIsCreateOpen(true)}
+            onClick={e => {
+                e.preventDefault() 
+                setIsCreateOpen(true)
+            }}
             >
             <CreateIcon active={isCreateOpen} />
             <span className="sidebar-label">Create</span>
-            </button>
+            </NavLink>
 
             {/* Profile */}
             <NavLink to={user ? `/user/${user._id}` : '/login'}>

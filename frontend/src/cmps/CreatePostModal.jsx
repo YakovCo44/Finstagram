@@ -2,6 +2,7 @@ import { useState, useRef } from "react"
 import { useSelector } from "react-redux"
 import axios from "axios"
 import '../assets/styles/cmps/CreatePostModal.scss'
+import CreateImg from '../assets/img/Create.png'
 
 export function CreatePostModal({ onClose }) {
   const user = useSelector(storeState => storeState.userModule.user)
@@ -10,6 +11,7 @@ export function CreatePostModal({ onClose }) {
   const [caption, setCaption] = useState('')
   const [isUploading, setIsUploading] = useState(false)
   const fileInputRef = useRef(null)
+  const [step, setStep] = useState(imagePreview ? 2 : 1)
 
   function handleFileChange(e) {
     const file = e.target.files[0]
@@ -57,19 +59,31 @@ export function CreatePostModal({ onClose }) {
     }
   }
 
-  return (
+ return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="create-post-modal" onClick={e => e.stopPropagation()}>
-        <button className="close-btn" onClick={onClose}>&times;</button>
-        <h2>Create new post</h2>
-        {!imagePreview ? (
-          <div
-            className="drop-area"
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            onClick={() => fileInputRef.current.click()}
-          >
-            <p>Drag & drop an image here, or click to select</p>
+        {/* Header */}
+        <div className="modal-header">
+          <span className="modal-title">Create new post</span>
+          <button className="close-btn" onClick={onClose}>&times;</button>
+          {step === 2 && (
+            <button
+              className="share-btn"
+              onClick={handleSubmit}
+              disabled={isUploading || !caption.trim()}
+            >Share</button>
+          )}
+        </div>
+        <div className="modal-line"></div>
+
+        {/* Step 1: Upload image */}
+        {step === 1 && (
+          <div className="drop-step">
+            <img src={CreateImg} alt="Upload" className="drop-img" />
+            <span className="drop-label">Drag photos and videos here</span>
+            <button className="select-btn" onClick={() => fileInputRef.current.click()}>
+              Select from computer
+            </button>
             <input
               type="file"
               accept="image/*"
@@ -78,19 +92,25 @@ export function CreatePostModal({ onClose }) {
               onChange={handleFileChange}
             />
           </div>
-        ) : (
-          <form className="caption-form" onSubmit={handleSubmit}>
-            <img src={imagePreview} alt="preview" className="image-preview" />
-            <textarea
-              placeholder="Write a caption..."
-              value={caption}
-              onChange={e => setCaption(e.target.value)}
-              maxLength={2200}
-            />
-            <button type="submit" disabled={isUploading || !caption.trim()}>
-              {isUploading ? 'Posting...' : 'Post'}
-            </button>
-          </form>
+        )}
+
+        {/* Step 2: Preview and caption */}
+        {step === 2 && (
+          <div className="post-preview-row">
+            <div className="preview-img-col">
+              <img src={imagePreview} alt="preview" className="image-preview" />
+            </div>
+            <div className="caption-col">
+              <textarea
+                className="status-textarea"
+                placeholder="Write a caption..."
+                value={caption}
+                onChange={e => setCaption(e.target.value)}
+                maxLength={2200}
+                rows={8}
+              />
+            </div>
+          </div>
         )}
       </div>
     </div>
