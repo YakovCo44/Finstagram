@@ -19,11 +19,14 @@ import { BsFillPlayBtnFill, BsPlay } from "react-icons/bs"
 import { FiMessageCircle } from "react-icons/fi"
 import { BsFillChatDotsFill } from "react-icons/bs"
 import { useLocation } from "react-router-dom"
+import { CreatePostModal } from '../cmps/CreatePostModal.jsx'
+import { HomeIcon, SearchIcon, ExploreIcon, ReelsIcon, MessagesIcon, CreateIcon } from '../assets/icons/InstagramIcons.jsx'
 
 export function AppHeader({ isCollapsed, onSearchClick }) {
     const user = useSelector(storeState => storeState.userModule.user)
     const navigate = useNavigate()
     const location = useLocation()
+    const [isCreateOpen, setIsCreateOpen] = useState(false)
 
     async function onLogout() {
         try {
@@ -36,114 +39,99 @@ export function AppHeader({ isCollapsed, onSearchClick }) {
     }
 
     return (
-         <aside className={`app-header${isCollapsed ? ' collapsed' : ''}`}>
-            <div className="nav-inner">
-                <Link to="/" className="logo" title="Finstagram">
-                    {isCollapsed ? (
-                        <img src={finstagramIcon} alt="Finstagram" height={32} />
-                    ) : (
-                        <img src={finstagramLogo} alt="Finstagram" height={32} />
-                    )}
-                </Link>
-                <nav>
-                    {/* Home */}
-                    <NavLink to="/" end>
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? <AiFillHome size={24} /> : <AiOutlineHome size={24} />}
-                            <span>Home</span>
-                            </>
-                        )}
-                        </NavLink>
+    <>
+      <aside className={`app-header${isCollapsed ? ' collapsed' : ''}`}>
+        <div className="nav-inner">
+          <Link to="/" className="logo" title="Finstagram">
+            {isCollapsed ? (
+              <img src={finstagramIcon} alt="Finstagram" height={32} />
+            ) : (
+              <img src={finstagramLogo} alt="Finstagram" height={32} />
+            )}
+          </Link>
+          <nav>
+            {/* Home */}
+            <NavLink to="/" end>
+              {({ isActive }) => (
+                <>
+                  <HomeIcon active={isActive} />
+                    <span className="sidebar-label">Home</span>
+                </>
+              )}
+            </NavLink>
 
-                        <NavLink
-                        to="/search"
-                        onClick={e => {
-                            e.preventDefault()
-                            if (isCollapsed) {
-                            onSearchClick(false)
-                            } else {
-                            onSearchClick(true)
-                            }
-                        }}>
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? (
-                                <span style={{
-                                display: "inline-flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                width: 32,
-                                height: 32,
-                                background: "#efefef",
-                                borderRadius: "8px"
-                                }}>
-                                <FiSearch size={20} style={{ fontWeight: 700 }} />
-                                </span>
-                            ) : (
-                                <FiSearch size={24} />
-                            )}
-                            {!isCollapsed && <span>Search</span>}
-                            </>
-                        )}
-                        </NavLink>
+            {/* Search */}
+            <NavLink to="/search">
+            {({ isActive }) => (
+                <>
+                <SearchIcon active={isActive} />
+                <span className="sidebar-label">Search</span>
+                </>
+            )}
+            </NavLink>
 
-                        <NavLink to="/explore">
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? <FaCompass size={24} /> : <FiCompass size={24} />}
-                            <span>Explore</span>
-                            </>
-                        )}
-                        </NavLink>
+            <NavLink to="/explore">
+            {({ isActive }) => (
+                <>
+                <ExploreIcon active={isActive} />
+                <span className="sidebar-label">Explore</span>
+                </>
+            )}
+            </NavLink>
 
-                        <NavLink to="/reels">
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? <BsFillPlayBtnFill size={24} /> : <BsPlay size={24} />}
-                            <span>Reels</span>
-                            </>
-                        )}
-                        </NavLink>
+            <NavLink to="/reels">
+            {({ isActive }) => (
+                <>
+                <ReelsIcon active={isActive} />
+                <span className="sidebar-label">Reels</span>
+                </>
+            )}
+            </NavLink>
 
-                        <NavLink to="/messages">
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? <BsFillChatDotsFill size={24} /> : <FiMessageCircle size={24} />}
-                            <span>Messages</span>
-                            </>
-                        )}
-                        </NavLink>
+            <NavLink to="/messages">
+            {({ isActive }) => (
+                <>
+                <MessagesIcon active={isActive} />
+                <span className="sidebar-label">Messages</span>
+                </>
+            )}
+            </NavLink>
 
-                        <NavLink to="/notifications">
-                        {({ isActive }) => (
-                            <>
-                            {isActive ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
-                            <span>Notifications</span>
-                            </>
-                        )}
-                        </NavLink>
+            <NavLink to="/notifications">
+              {({ isActive }) => (
+                <>
+                  {isActive ? <AiFillHeart size={24} /> : <AiOutlineHeart size={24} />}
+                  <span>Notifications</span>
+                </>
+              )}
+            </NavLink>
+            <button
+            className={`create-btn${isCreateOpen ? ' active' : ''}`}
+            type="button"
+            onClick={() => setIsCreateOpen(true)}
+            >
+            <CreateIcon active={isCreateOpen} />
+            <span className="sidebar-label">Create</span>
+            </button>
 
-                        <NavLink to="/create">
-                        <>
-                            <FiPlusSquare size={24} />
-                            <span>Create</span>
-                        </>
-                        </NavLink>
+            {/* Profile */}
+            <NavLink to={user ? `/user/${user._id}` : '/login'}>
+              {user?.imgUrl
+                ? <img src={user.imgUrl} alt={user.fullname} className="avatar" />
+                : <CgProfile size={24} />
+              }
+              <span>Profile</span>
+            </NavLink>
+          </nav>
+          {user && (
+            <button className="logout-btn" onClick={onLogout}>Logout</button>
+          )}
+        </div>
+      </aside>
 
-                    {/* Profile */}
-                    <NavLink to={user ? `/user/${user._id}` : '/login'}>
-                        {user?.imgUrl
-                            ? <img src={user.imgUrl} alt={user.fullname} className="avatar" />
-                            : <CgProfile size={24} />
-                        }
-                        <span>Profile</span>
-                    </NavLink>
-                </nav>
-                {user && (
-                    <button className="logout-btn" onClick={onLogout}>Logout</button>
-                )}
-            </div>
-        </aside>
-    )
+      {/* ---- RENDER MODAL IF OPEN ---- */}
+      {isCreateOpen && <CreatePostModal onClose={() => setIsCreateOpen(false)} />}
+    </>
+  )
 }
+

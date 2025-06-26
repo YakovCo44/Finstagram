@@ -3,12 +3,14 @@ import path from 'path'
 import cors from 'cors'
 import express from 'express'
 import cookieParser from 'cookie-parser'
-
+import postRoutes from './api/post/post.routes.js'
 import { authRoutes } from './api/auth/auth.routes.js'
 import { userRoutes } from './api/user/user.routes.js'
 import { setupSocketAPI } from './services/socket.service.js'
 
 import { setupAsyncLocalStorage } from './middlewares/setupAls.middleware.js'
+
+
 
 const app = express()
 const server = http.createServer(app)
@@ -17,6 +19,7 @@ const server = http.createServer(app)
 app.use(cookieParser())
 app.use(express.json())
 
+// ---------- MOVE THIS BLOCK UP HERE! ----------
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.resolve('public')))
 } else {
@@ -33,16 +36,19 @@ if (process.env.NODE_ENV === 'production') {
     }
     app.use(cors(corsOptions))
 }
+// ----------------------------------------------
 
+// Register your API routes AFTER CORS is set up:
+app.use('/api/post', postRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/user', userRoutes)
+app.use('/uploads', express.static('uploads'))
+
+// ...the rest stays the same...
 
 app.all('/*all', setupAsyncLocalStorage)
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-
 setupSocketAPI(server)
-
-
 
 app.get('/secret', (req, res) => {
     if (process.env.SECRET_STR) {
@@ -52,12 +58,7 @@ app.get('/secret', (req, res) => {
     }
 })
 
-
-// Make every unhandled server-side-route match index.html
-// so when requesting http://localhost:3030/unhandled-route... 
-// it will still serve the index.html file
-// and allow vue/react-router to take it from there
-
+// Serve index.html for all unhandled routes
 app.get('/*all', (req, res) => {
     res.sendFile(path.resolve('public/index.html'))
 })
@@ -68,6 +69,9 @@ const port = process.env.PORT || 3030
 server.listen(port, () => {
     logger.info('Server is running on: ' + `http://localhost:${port}/`)
 })
+
+
+
 
 
 

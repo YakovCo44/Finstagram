@@ -19,6 +19,7 @@ import { SearchModal } from './cmps/SearchModal.jsx'
 import { Explore } from './pages/Explore'
 import { Reels } from './pages/Reels'
 import { Create } from './pages/Create'
+import { PostModal } from './cmps/PostModal.jsx'
 
 
 export function RootCmp() {
@@ -56,6 +57,7 @@ export function RootCmp() {
                         <Route index element={<Login />} />
                         <Route path="signup" element={<Signup />} />
                     </Route>
+                    <Route path="/p/:postId" element={<PostModal />} />
                 </Routes>
             </main>
             <AppFooter />

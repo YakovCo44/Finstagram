@@ -1,0 +1,148 @@
+.post-modal__backdrop {
+  position: fixed;
+  z-index: 1001;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-modal {
+  background: #fff;
+  width: 1400px;
+  height: 96vh;
+  margin-right: 0;
+  margin-left: 250px;
+  border-radius: 0;
+  display: flex;
+  box-shadow: 0 0 32px rgba(0,0,0,0.24);
+  overflow: hidden;
+  animation: pop-in .22s;
+
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(24px);}
+  to { opacity: 1; transform: none;}
+}
+
+.post-modal__img-section {
+  background: #000;
+   flex: 1 1 56%;
+  width: 100%;
+  background: #000;
+  display: flex;
+  align-items: stretch;   
+  justify-content: center;
+}
+.post-modal__img-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    
+  display: block;
+}
+
+.post-modal__details {
+  flex: 1 1 44%;
+  display: flex;
+  flex-direction: column;
+  min-width: 340px;
+  max-width: 400px;
+  background: #fff;
+}
+
+.post-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px;
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: 500;
+}
+
+.post-modal__header .avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #dbdbdb;
+}
+
+.post-modal__comments-area {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #fff;
+}
+
+.post-modal__comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.post-modal__comment .avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #eee;
+}
+.post-modal__comment .username {
+  font-weight: 500;
+  margin-right: 7px;
+}
+
+.post-modal__comment span {
+  display: inline;
+}
+
+.post-modal__actions {
+  border-top: 1px solid #dbdbdb;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-modal__actions-row {
+  display: flex;
+  gap: 26px;
+  padding: 10px 0 2px 0;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #262626;
+}
+.post-modal__actions-row svg {
+  transition: color .18s;
+}
+.post-modal__actions-row svg:hover {
+  color: #4b4747; 
+}
+
+.post-modal__actions .like-count {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.add-comment-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.add-comment-form input {
+  flex: 1;
+  border: none;
+  background: #fafafa;
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 15px;
+}
+.add-comment-form button {
+  background: none;
+  color: #0a6cff;
+  border: none;
+  font-weight: bold;
+  opacity: .7;
+  cursor: pointer;
+}
