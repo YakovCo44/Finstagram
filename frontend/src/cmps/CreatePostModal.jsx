@@ -14,19 +14,21 @@ export function CreatePostModal({ onClose }) {
   const [step, setStep] = useState(imagePreview ? 2 : 1)
 
   function handleFileChange(e) {
-    const file = e.target.files[0]
-    if (!file) return
-    setImage(file)
-    setImagePreview(URL.createObjectURL(file))
-  }
+  const file = e.target.files[0]
+  if (!file) return
+  setImage(file)
+  setImagePreview(URL.createObjectURL(file))
+  setStep(2)
+}
 
   function handleDrop(e) {
-    e.preventDefault()
-    const file = e.dataTransfer.files[0]
-    if (!file) return
-    setImage(file)
-    setImagePreview(URL.createObjectURL(file))
-  }
+  e.preventDefault()
+  const file = e.dataTransfer.files[0]
+  if (!file) return
+  setImage(file)
+  setImagePreview(URL.createObjectURL(file))
+  setStep(2)
+}
 
   function handleDragOver(e) {
     e.preventDefault()
